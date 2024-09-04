@@ -12,31 +12,36 @@
     <ol>
       <li>Where should you use constants, and where should you use variables? Can they all be constants?</li>
       <p>
-				[Replace this with you answer]
+				const kan ikke endres på senere og må ha en verdi når du lager den, derfor er det lurt å bruke const når du ikke skal endre på fixed numbers. som feks pi.
+        var er lurt å bruke når du skal endre på var under programkjøringen som feks i løkker eller brukerinnput
+        derfor kan de heller ikke alltid være const. programmer må ofte må tilpasse seg ulike forhold, noe som krever fleksibilitet.
 			</p>
       <li>How do parentheses affect the arithmetic outcome of an expression?</li>
       <p>
-				[Replace this with you answer]
+				Parenteser påvirker det aritmetiske resultatet av et uttrykk ved å bestemme rekkefølgen operasjonene utføres i
+        operasjoner innenfor parantes blir utføsrt først
 			</p>
-      <li>How do we limit floating-point numbers to a given number of decimals?</li>
+      <li>How do we limit floating-point numbers to a given number of decimals?H</li>
       <p>
-				[Replace this with you answer]
+				tofixed () math.round() toPrecision() 
 			</p>
       <li>How can we compare two floating-point values to see if they are equal (is 12.199999 the same as 12.2)?</li>
       <p>
-				[Replace this with you answer]
+				 med å bruke === ??? 
 			</p>
       <li>What do comparison operators return, and how can we check if they are FALSE or TRUE?</li>
       <p>
-				[Replace this with you answer]
+				de returnerer true or false. bruk ===, !=, >=, <=, 
 			</p>
       <li>How does the Math.random() function work, and what can it be used for?</li>
       <p>
-				[Replace this with you answer]
+				lager tilfeldige tall for deg. kan brukes i feks spill når du trenger tilfeldige tall.
 			</p>
       <li>What is modulus (%), and when do we need this operator in mathematical operations?</li>
       <p>
-				[Replace this with you answer]
+				modulus gir rester av matte. så hvis man tar 7 delt på 3 får man 1 i rest. da får man 1 ut av modulus(%)
+        du kan bruke det til å skille mellom oddetall og partall. 
+        man kan også bruke det til å finne ut av hvilken dag i uken noe lander på. 
 			</p>
     </ol>
 		<script type="module" src="./task_2-2.mjs" defer></script>
