@@ -46,11 +46,11 @@ printOut(newLine);
 
 printOut("--- Part 7 ----------------------------------------------------------------------------------------------");
 /* Put your code below here!*/
-let Size = Math.floor(Math.random() * 8) + 1;
+let size2 = Math.floor(Math.random() * 8) + 1;
 
-if ( Size <= 6) {
+if ( size2 <= 6) {
   printOut("The image is too big");
-} else if ( Size >= 4 ) {
+} else if ( size2 >= 4 ) {
   printOut("thank you");
 }
  else {
@@ -76,11 +76,81 @@ printOut(newLine);
 
 printOut("--- Part 9 ----------------------------------------------------------------------------------------------");
 /* Put your code below here!*/
-printOut("Replace this with you answer!");
+
+const monthList2 = ["January", "February", "March", "April", "May",
+  "June", "July", "August", "September", "October", "November", "December"];
+  const noOfMonth2 = monthList2.length;
+  const monthName2 = monthList2[Math.floor(Math.random() * noOfMonth2)];
+
+const daysInMonth2 = {
+  "January": 31,
+  "February": 28, // teller ikke med leap year
+  "March": 31,
+  "April": 30,
+  "May": 31,
+  "June": 30,
+  "July": 31,
+  "August": 31,
+  "September": 30,
+  "October": 31,
+  "November": 30,
+  "December": 31
+  };
+  
+  if (monthName2.includes("r")) {
+    printOut("You must take vitamin D");
+  } else {
+    printOut("You do not need to take vitamin D");
+  }
+
+  printOut("Number of days in " + monthName2 + ": " + daysInMonth2[monthName2]);
 printOut(newLine);
 
 /* Task 10*/
 printOut("--- Part 10 ---------------------------------------------------------------------------------------------");
 /* Put your code below here!*/
-printOut("Replace this with you answer!");
+const monthList3 = ["January", "February", "March", "April", "May",
+  "June", "July", "August", "September", "October", "November", "December"];
+  const noOfMonth3 = monthList3.length;
+  const monthName3 = monthList3[Math.floor(Math.random() * noOfMonth3)];
+
+  const daysInMonth3 = {
+    "January": 31,
+    "February": 28, // teller ikke med leap year
+    "March": 31,
+    "April": 30,
+    "May": 31,
+    "June": 30,
+    "July": 31,
+    "August": 31,
+    "September": 30,
+    "October": 31,
+    "November": 30,
+    "December": 31
+    };
+  
+    const galleryStatus = {
+      "March": "Gallery is closed for refurbishment.",
+      "April": "Temporary premises in the building next door.",
+      "May": "Gallery is closed for refurbishment.",
+      "June": "Gallery is open.",
+      "July": "Gallery is open.",
+      "August": "Gallery is open.",
+      "September": "Gallery is open.",
+      "October": "Gallery is open.",
+      "November": "Gallery is open.",
+      "December": "Gallery is open.",
+      "January": "Gallery is open.",
+      "February": "Gallery is open."
+    };
+
+  if (monthName3.includes("r")) {
+    printOut("You must take vitamin D");
+  } else {
+    printOut("You do not need to take vitamin D");
+  }
+
+  printOut("Number of days in " + monthName3 + ": " + daysInMonth3[monthName3]);
+  printOut("Gallery Status: " + galleryStatus[monthName3]);
+
 printOut(newLine);
