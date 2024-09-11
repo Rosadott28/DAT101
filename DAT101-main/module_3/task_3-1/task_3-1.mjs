@@ -5,9 +5,13 @@ initPrintOut(document.getElementById("txtOut"));
 printOut("--- Part 1, 2, 3 ----------------------------------------------------------------------------------------");
 /* Put your code below here!*/
 printOut("Task 1, 2 and 3");
-let wakeUpTime = 2;
-if ("Replace this") {
+let wakeUpTime = 8;
+if (wakeUpTime === 7) {
   printOut("I can take the bus to school.");
+} if (wakeUpTime === 8) {
+  printOut("u can take the train");
+} else {
+  printOut(" u have to take the car to school");
 }
 printOut(newLine);
 
