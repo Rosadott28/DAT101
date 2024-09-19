@@ -10,8 +10,43 @@
       <span id="txtOut" style="white-space: nowrap"></span>
     </div>
     <ol>
-      <li>[Write the question here, and copy this for more questions]</li>
+      <li>In part 1, is it possible to solve the problem using a single "for" loop?</li>
+      <p>
+        yes. Det er mulig å løse dette problemet ved å bruke en enkelt for-løkke ved å kombinere de to oppgavene
+        med å telle opp til ti og telle ned fra ti i én løkke.
+        Du kan oppnå dette ved å bruke loop index til å konstruere begge sekvensene.
+      </p>
+
+
+      <li> In part 2, can we create what is known as an "infinite" loop within the condition of the "while" loop?
+        Describe what would or would not be necessary to achieve this. Provide a thorough explanation of
+        your answer.</li>
+
+      <p>Den gitte koden skaper allerede en effektiv uendelig løkke til betingelsen er oppfylt.
+         Løkken vil fortsette å kjøre så lenge det gjettede nummeret ikke er lik målnummeret.
+         For å sikre korrekt oppførsel av løkken er det viktig å sørge for at betingelsen til slutt kan bli oppfylt,
+         eller å ha sikkerhetsmekanismer på plass for å unngå utilsiktede uendelige løkker.
+
+      </p>'
+      
+
+      <li>Discuss briefly how quickly or slowly a computer might be able to compute this, considering the
+        number of guesses and the time it takes. How does the program behave while it is guessing? Can
+        the program perform other tasks concurrently?
+        </li>
+
+      <p> fast. Hvor raskt programmet fungerer, avhenger av hvor mange gjetninger det tar og hvor effektivt datamaskinen lager tilfeldige tall.
+          Når programmet gjetter, bruker det CPU-en og kan ikke gjøre andre ting samtidig.
+          For å gjøre flere oppgaver samtidig, må du bruke metoder som tillater samtidighet.
+        </p>
+
+
+      <li>Explain the relationship between rows and columns in nested "for" loops. Can we, for instance,
+        change the order, considering rows to be innermost or columns to be innermost, or does this not
+        matter?</li>
       <p>[Write your answer here, and copy this for more answers]</p>
+
+
     </ol>
     <script type="module" src="./task_3-2.mjs" defer></script>
   </body>
