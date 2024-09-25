@@ -153,13 +153,12 @@ let straight5 = dice == target || dice2 == target || dice3 == target || dice4 ==
 target++;
 let straight6 = dice == target || dice2 == target || dice3 == target || dice4 == target || dice5 == target || dice6 == target;
 
+count ++;
+
 if (straight1 && straight2 && straight3 && straight4 && straight5 && straight6 ){
     printOut("straight tok " + count + " kast")
     break;
 }
-
-count ++;
-
 }
 
 printOut(newLine);
@@ -169,53 +168,102 @@ printOut("--- Part 7 part 2 ----------------------------------------------------
 
 let count2 = 0;
 while (true) {
+    let diceArray = [];
+    for (let i = 0; i < 6; i++) {
+        diceArray[i] = Math.floor(Math.random() * 6) + 1;
+    }
 
-    let dice = Math.floor(Math.random() * 6)+ 1;
-    
-    let dice2 = Math.floor(Math.random() * 6)+ 1;
-    
-    let dice3 = Math.floor(Math.random() * 6)+ 1;
-    
-    let dice4 = Math.floor(Math.random() * 6)+ 1;
-    
-    let dice5 = Math.floor(Math.random() * 6)+ 1;
-    
-    let dice6 = Math.floor(Math.random() * 6)+ 1;
-    
-let target = 1;
-let par= dice == dice2 || dice == dice3 || dice == dice4 || dice == dice5 || dice == dice6 || dice6 == target;
-target++;
-let par2 = dice == target || dice2 == target || dice3 == target || dice4 == target || dice5 == target || dice6 == target;
-target++;
-let par3 = dice == target || dice2 == target || dice3 == target || dice4 == target || dice5 == target || dice6 == target;
-target++;
-let par4 = dice == target || dice2 == target || dice3 == target || dice4 == target || dice5 == target || dice6 == target;
-target++;
-let par5 = dice == target || dice2 == target || dice3 == target || dice4 == target || dice5 == target || dice6 == target;
-target++;
-let par6 = dice == target || dice2 == target || dice3 == target || dice4 == target || dice5 == target || dice6 == target;
+    let pairs = 0;
+    for (let i = 1; i <= 6; i++) {
+        let count = 0;
+        for (let j in diceArray) {
+            let dice = diceArray[j];
+            if (dice == i) {
+                count++;
+            }
+        }
+        pairs += Math.floor(count / 2);
+    }
 
-if (straight1 && straight2 && straight3 && straight4 && straight5 && straight6 ){
-    printOut("straight tok " + count2 + " kast")
-    break;
+    count2++;
+
+    if (pairs == 3) {
+        printOut(diceArray.toString());    
+        printOut("3 par tok " + count2 + " kast")
+        break;
+    }
 }
 
-count ++;
+printOut(newLine);
 
+printOut("--- Part 7.3 ----------------------------------------------------------------------------------------------");
+let count3 = 0;
+while (true) {
+    let diceArray = [];
+    for (let i = 0; i < 6; i++) {
+        diceArray[i] = Math.floor(Math.random() * 6) + 1;
+    }
+
+    let tower2 = false;
+    let tower4 = false;
+    for (let i = 1; i <= 6; i++) {
+        let count = 0;
+        for (let j in diceArray) {
+            let dice = diceArray[j];
+            if (dice == i) {
+                count++;
+            }
+        }
+        if (count == 2) {
+            tower2 = true;
+        }
+        if (count == 4) {
+            tower4 = true;
+        }
+    }
+
+    count3++;
+
+    if (tower2 && tower4) {
+        printOut(diceArray.toString());    
+        printOut("tårn tok " + count3 + " kast")
+        break;
+    }
 }
 
-
-
-printOut("Replace this with you answer!");
 printOut(newLine);
 
-printOut("--- Part 9 ----------------------------------------------------------------------------------------------");
-/* Put your code below here!*/
-printOut("Replace this with you answer!");
-printOut(newLine);
+printOut("--- Part 7.4 ---------------------------------------------------------------------------------------------");
 
-/* Task 10*/
-printOut("--- Part 10 ---------------------------------------------------------------------------------------------");
-/* Put your code below here!*/
-printOut("Replace this with you answer!");
+let count4 = 0;
+while (true) {
+    let diceArray = [];
+    for (let i = 0; i < 6; i++) {
+        diceArray[i] = Math.floor(Math.random() * 6) + 1;
+    }
+
+    let yahtzee = false;
+
+    for (let i = 1; i <= 6; i++) {
+        let count = 0;
+        for (let j in diceArray) {
+            let dice = diceArray[j];
+            if (dice == i) {
+                count++;
+            }
+        }
+        if (count == 6) {
+            yahtzee = true;
+        }
+    }
+
+    count4++;
+
+    if (yahtzee) {
+        printOut(diceArray.toString());    
+        printOut("yahtzee tok " + count4 + " kast")
+        break;
+    }
+}
+
 printOut(newLine);
