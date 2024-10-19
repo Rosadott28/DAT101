@@ -125,20 +125,21 @@ printOut(newLine);
 printOut("--- Part 7 ----------------------------------------------------------------------------------------------");
 /* Put your code below here!*/
 
+/* numberofoccurences, sammenligner alle på en.*/
 let count = 0;
 while (true) {
 
-    let dice = Math.floor(Math.random() * 6)+ 1;
+    const dice = Math.floor(Math.random() * 6)+ 1; //vet man kan bruke math.ceil(math.random()*6) også
     
-    let dice2 = Math.floor(Math.random() * 6)+ 1;
+    const dice2 = Math.floor(Math.random() * 6)+ 1;
     
-    let dice3 = Math.floor(Math.random() * 6)+ 1;
+    const dice3 = Math.floor(Math.random() * 6)+ 1;
     
-    let dice4 = Math.floor(Math.random() * 6)+ 1;
+    const dice4 = Math.floor(Math.random() * 6)+ 1;
     
-    let dice5 = Math.floor(Math.random() * 6)+ 1;
+    const dice5 = Math.floor(Math.random() * 6)+ 1;
     
-    let dice6 = Math.floor(Math.random() * 6)+ 1;
+    const dice6 = Math.floor(Math.random() * 6)+ 1;
     
 let target = 1;
 let straight1 = dice == target || dice2 == target || dice3 == target || dice4 == target || dice5 == target || dice6 == target;
@@ -265,5 +266,6 @@ while (true) {
         break;
     }
 }
-
+//vet vi egt ikke skulle bruke array men prøvde veldig lenge å finne en løsning 
 printOut(newLine);
+
