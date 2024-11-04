@@ -211,19 +211,100 @@ testCases2.forEach(({ speed, distance, time }) => {
 
 printOut(newLine);
 
+printOut("--- Task 8 ----------------------------------------------------------------------------------------------");
 
-printOut("--- Part 8 ----------------------------------------------------------------------------------------------");
-/* Put your code below here!*/
-printOut("Replace this with you answer!");
+function createText(text, maxSize, char, insertAtEnd) {
+    if (text.length < maxSize && insertAtEnd === true) {
+        let placeholder = "";
+        while (text.length + placeholder.length < maxSize)
+            {
+                placeholder += char;
+            }
+
+            text = placeholder + text;
+
+    }
+
+    else if(text.length < maxSize && insertAtEnd === false)
+        {
+            let placeholder = "";
+
+            while (text.length+ placeholder.length > maxSize)
+                {   
+                    placeholder += char;
+                }
+    
+
+        text = text + placeholder;
+        }
+        else
+        {
+            return text;
+        }
+
+       return text;
+    }
+
+let modText1 = createText("this is a text",60, "\u00A0", false);
+let modText2 = createText("this is a text",60, "\u00A0 ", true);
+
+printOut(modText1);
+printOut(modText2);
 printOut(newLine);
 
-printOut("--- Part 9 ----------------------------------------------------------------------------------------------");
-/* Put your code below here!*/
-printOut("Replace this with you answer!");
+
+printOut("--- Part 9 ---------------------------------------------------------------------------------------------");
+
+// Function to create and check the mathematical expressions
+function checkMathExpressions(lines) {
+    let num = 1;  // Starting number
+
+    for (let i = 1; i <= lines; i++) {
+        // Determine number of elements on the left and right side
+        let leftSideElements = i + 1;   // Left side starts with 2 elements and grows
+        let rightSideElements = i;      // Right side starts with 1 element and grows
+
+        // Get the numbers for the left and right sides
+        let leftSideNumbers = Array.from({ length: leftSideElements }, (_, index) => num + index);
+        let rightSideNumbers = Array.from({ length: rightSideElements }, (_, index) => num + leftSideElements + index);
+
+        // Calculate the sum of left and right sides
+        let leftSum = leftSideNumbers.reduce((acc, val) => acc + val, 0);
+        let rightSum = rightSideNumbers.reduce((acc, val) => acc + val, 0);
+
+        // Print the expression in the required format
+        printOut(leftSideNumbers.join(" ") + " = " + rightSideNumbers.join(" "));
+
+        // Check if the sums are equal
+        if (leftSum !== rightSum) {
+            printOut("Error: The two sides are not equal in line " + i);
+            return;  // Stop if the sums are not equal
+        }
+
+        // Move to the next number sequence
+        num += leftSideElements + rightSideElements;
+    }
+
+    // If all lines are correct
+    printOut("Mathematics is fun!");
+}
+
+checkMathExpressions(200);
 printOut(newLine);
 
-/* Task 10*/
 printOut("--- Part 10 ---------------------------------------------------------------------------------------------");
-/* Put your code below here!*/
-printOut("Replace this with you answer!");
+
+function factorial(n) {
+    if (n <= 1) return 1;      // Base case: factorial of 1 is 1
+    return n * factorial(n - 1);  // Recursive case: n * factorial of (n - 1)
+}
+
+// Example usage
+
+let number = 9;
+let result = factorial(number).toString();
+
+printOut("factorial(" + number + ") is " + result);              // Should print 120 for factorial of 5
+
 printOut(newLine);
+
