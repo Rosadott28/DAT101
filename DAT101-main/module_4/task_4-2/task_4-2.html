@@ -10,8 +10,45 @@
       <span id="txtOut" style="white-space: nowrap"></span>
     </div>
     <ol>
-      <li>[Write the question here, and copy this for more questions]</li>
-      <p>[Write your answer here, and copy this for more answers]</p>
+      <li>What is an array?</li>
+      <p>An array is a collection of values stored in a single variable. Each value can be accessed using an index.</p>
+
+      <li>What does it mean to "hardcode" when we talk about programming?</li>
+      <p>"Hardcoding" means directly embedding values into code, rather than using variables or user input to dynamically determine them.</p>
+
+      <li>Explain in plain text what happens in task 3, and how we can traverse (iterate) the array when we (humans) don't "know" how long the array is.</li>
+      <p>In task 3, the text is split into an array of words. We can traverse (iterate) the array by using a loop that continues until all elements are accessed, even if we don't know the array's length in advance. The loop uses <code>array.length</code> to know when to stop.</p>
+
+      <li>Why is it beneficial to store instances of a class in arrays, as in task 4?</li>
+      <p>Storing instances of a class in arrays allows us to easily manage and access multiple objects, iterate through them, and perform actions on all items in the array at once.</p>
+
+        
+      <li> Question 5: Try your best to explain the EWeekDays object from task 7. How do we use the "value" attribute, for
+        example? In what way do "WeekDay", "Workdays", and "Weekends" differ from each other? If we
+        wanted to create a new element "WorkoutDays", which would contain "Monday", "Wednesday", and
+        "Thursday", how would it ideally look? </li>
+      <p>
+          EWeekDays er et objekt som representerer ukedager og grupper av dager (som arbeidsdager og helg).<br>
+          Hver ukedag har en value (hexadecimal verdi) som kan brukes til bitmasking,
+          slik at man kan kombinere ukedager eller sjekke om en bestemmt dag er inkludert i en gruppe.<br>
+          For eksempel Workdays er en samling av mandag til fredag, og har en value som er summen av verdiene for disse dagene (0x1F).<br>
+          Helgen (Weekends) har en value for lørdag og søndag (0x60).<br>
+          Hvis vi ønsker å lage en ny gruppe som "WorkoutDays" som inkluderer mandag, onsdag og torsdag,<br>
+          kan vi sette value til 0x0D (13 i desimal), som er summen av verdiene for de ukedagene
+                    (0x01 for mandag, 0x04 for onsdag, og 0x08 for torsdag).<br>
+          Dette gjør det mulig å bruke bitvise operasjoner for å gruppere og sjekke spesifike dager på en effektiv måte.<br>
+          
+        Jeg vil ha pizza - Ebba (gruppediskusjon gjort med, Benedicte, Helene, stine og meg) </p>
+      
+      <li> In task 8, we will use a "callback" routine when sorting. Explain how such a "callback" routine works.</li>
+      <p>A callback function in sorting is a comparison function passed to the sort method, determining the order of elements. It compares two values at a time and returns a number indicating their order, enabling customized sorting logic.</p>
+        
+      <li> What happens in the sorting routines you have created? Try to explain how the array can figure out if an element should come before or after another. The best way to answer this is to actually print both parameters each time the sorting routine runs.</li>
+      <p>In the sorting routines, the callback function compares two elements, deciding which should come first by returning a positive or negative value. For ascending order, it returns a - b, and for descending, b - a, helping arrange elements in the desired order.</p>
+        
+      <li>In task 10, we will create an array with rows and columns. Explain what the first element of the array contains.</li>
+      <p>The first element of the array is a row, containing an array of elements for each column in that row. Specifically, the first element at index [0][0] holds the value "Row 1, Column 1" as the label for its position.</p>
+        
     </ol>
     <script type="module" src="./task_4-2.mjs" defer></script>
   </body>
