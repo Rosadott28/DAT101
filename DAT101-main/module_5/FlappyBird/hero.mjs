@@ -1,44 +1,67 @@
 "use strict";
+import lib2d from "../../common/libs/lib2d.mjs";
 import libSprite from "../../common/libs/libSprite.mjs";
-import { GameProps } from "./FlappyBird.mjs";
+import { GameProps, EGameStatus } from "./FlappyBird.mjs";
 
 class THero extends libSprite.TSprite {
-    constructor (aSpriteCanvas, aSpriteInfo, aPosition, groundY) {
-        super(aSpriteCanvas, aSpriteInfo, aPosition);
-        this.animateSpeed = 10;
-        this.velocity = 0;
-        this.gravity = 2;
-        this.groundY = groundY;
-    }
-    draw(){
-        super.draw();
-    }
-    update(){
-        //if (this.velocity > 0) {
-        //    this.velocity -= this.gravity;
-        //}
-        //this.posY += this.velocity;
-        //this.posY += this.gravity;
+  #spi;
+  #gravity = 9.81 / 100;
+  #velocity = 0;
+  #sineWave;
+  //constructor (aSpriteCanvas, aSpriteInfo, aPosition, groundY) {
+  constructor(aSpriteCanvas, aSpriteInfo, aPosition) {
+    super(aSpriteCanvas, aSpriteInfo, aPosition);
+    this.#spi = aSpriteInfo;
+    this.animateSpeed = 10;
+    this.isDead = false;
+    this.rotation = 0;
+    this.#sineWave = new lib2d.TSineWave(1.5, 2);
+  }
+  //this.velocity = 0;
+  //this.gravity = 0.05;
+  // this.groundY = groundY;
 
-        if (this.velocity < 0) {
-            this.velocity += 0.75;
-        }
+  draw() {
+    super.draw();
+  }
+
+  update() {
+    /* this.velocity += this.gravity;
         this.posY += this.velocity;
-        this.posY += this.gravity;
-
+    
         if (this.posY > this.groundY) {
             this.posY = this.groundY;
-        }
+            this.velocity = 0;
+        } else {
+            this.posY = this.groundY - this.spi.height;
+            GameProps.status = EGameStatus.gameOver;
+            this.animateSpeed = 0;
+          }
+            */
 
-        console.log(this.posY);
+    const groundY = GameProps.ground.posY;
+    const bottomY = this.posY + this.#spi.height;
+    if (bottomY < groundY) {
+      if (this.posY < 0) {
+        this.posY = 0;
+        this.#velocity = 0;
+      }
+      this.translate(0, this.#velocity);
+      this.rotation = this.#velocity * 10;
+      this.#velocity += this.#gravity;
+    } else {
+      this.posY = groundY - this.#spi.height;
+      GameProps.status = EGameStatus.gameOver;
+      this.animateSpeed = 0;
+    }
+  }
 
-        if (this.posY < 0){
-            this.posY = 0
-        }
-    }
-    flap(){
-        this.velocity = -15;
-    }
+  flap() {
+    this.#velocity = -2.5;
+  }
+  updateIdle() {
+    this.translate(0, this.#sineWave.value);
+  }
 }
 
 export default THero;
