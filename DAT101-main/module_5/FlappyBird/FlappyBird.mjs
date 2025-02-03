@@ -46,6 +46,9 @@ export const GameProps = {
   obstacles: [],
   baits: [],
   menu: null,
+  score: 0,
+  bestScore: 0,
+  sounds: {countDown: null, food: null, gameOver: null, dead: null, running: null},
 };
 
 //--------------- Functions ----------------------------------------------//
@@ -85,6 +88,7 @@ function loadGame(){
   setInterval(updateGame, 10);
 
   GameProps.menu = new TMenu(spcvs);
+  GameProps.sounds.running = new libSound.TSoundFile(".Media/running.mp3"); //yp check i t out
 }
 
 function drawGame(){
@@ -120,44 +124,62 @@ function updateGame(){
     case EGameStatus.playing:
       if (GameProps.hero.isDead) {
         GameProps.hero.animateSpeed = 0;
-       GameProps.hero.update();
+        GameProps.hero.update();
         return;
       }
       GameProps.ground.translate(-GameProps.speed, 0);
+
       if (GameProps.ground.posX <= -SpriteInfoList.background.width) {
         GameProps.ground.posX = 0;
       }
+
       GameProps.hero.update();
       let delObstacleIndex = -1;
+      
+
       for (let i = 0; i < GameProps.obstacles.length; i++) {
         const obstacle = GameProps.obstacles[i];
         obstacle.update();
+
+        if(obstacle.right < GameProps.hero.left && !obstacle.hasPassed){
+          GameProps.menu.incScore(20);
+          //hasPassedObstacle = true;
+          obstacle.hasPassed = true;
+        }
+
         if (obstacle.posX < -100) {
           delObstacleIndex = i;
         }
       }
-      if (delObstacleIndex >= 0) {
-        GameProps.obstacles.splice(delObstacleIndex, 1);
+
+        if (delObstacleIndex >= 0) {
+          GameProps.obstacles.splice(delObstacleIndex, 1);
       }
+
       case EGameStatus.gameOver:
         let delBaitIndex = -1;
         const posHero = GameProps.hero.getCenter();
-        for (let i = 0; i < GameProps.baits.length; i++) {
-          const bait = GameProps.baits[i];
-          bait.update();
-          const posBait = bait.getCenter();
-          const dist = posHero.distanceToPoint(posBait);
-          if (dist < 15) {
-            delBaitIndex = i;
+
+      for (let i = 0; i < GameProps.baits.length; i++) {
+        const bait = GameProps.baits[i];
+        bait.update();
+        const posBait = bait.getCenter();
+        const dist = posHero.distanceToPoint(posBait);
+
+        if (dist < 15) {
+          delBaitIndex = i;
           }
         }
+
         if (delBaitIndex >= 0) {
           GameProps.baits.splice(delBaitIndex, 1);
+          GameProps.menu.incScore(10); //her skal flyttes
+
         }
         break;
         case EGameStatus.idle:
           GameProps.hero.updateIdle();
-          break;
+        break;
     }
   
 }
@@ -204,6 +226,21 @@ function spawnBait() {
     setTimeout(spawnBait, sec * 1000);
   }
 }
+
+export function StartGame() {
+  GameProps.status = EGameStatus.playing;
+  //helten er død, vi må lage ny helt.
+  //slette alle hindringer og baits.
+
+  GameProps.hero = new THero(spcvs, SpriteInfoList.hero1, new lib2d.TPosition(100,100));
+  GameProps.obstacles = [];
+  GameProps.baits = [];
+ // GameProps.score = 0;
+  GameProps.menu.reset();
+  spawnObstacle();
+  spawnBait();
+}
+
 
 //--------------- Event Handlers -----------------------------------------//
 
