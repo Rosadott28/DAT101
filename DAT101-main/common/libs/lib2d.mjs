@@ -58,6 +58,7 @@ class TRectangle extends TPosition{
     if(this.right <= aRect.left) return false;
     if(this.top >= aRect.bottom) return false;
     if(this.bottom <= aRect.top) return false;
+    console.log(aRect)
     return true;
   }
 

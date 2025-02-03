@@ -21,7 +21,8 @@ class TObstacle {
     top = Math.floor(Math.random() * gap) + groundY -25;
     pos.y = top;
     this.#lower = new libSprite.TSprite(aSpriteCanvas, aSpriteInfo, pos);
-    this.#lower.index = 2; // her
+    this.#lower.index = 2; 
+    this.hasPassed = false; //implisit vi vet ikke hva vi har gjort. javascript gjetter. ekslusivt gjør at vi setter noe til Eksamen!!
   }
 
   draw(){
@@ -31,7 +32,7 @@ class TObstacle {
 
   update(){
     //console.log(`Hero pos x: ${GameProps.hero.posX} + Obstacle pos x: ${this.#lower.posX} `)
-    console.log(`Hero pos y: ${GameProps.hero.posY} + Obstacle pos x: ${this.#lower.posY} `)
+    //console.log(`Hero pos y: ${GameProps.hero.posY} + Obstacle pos x: ${this.#lower.posY} `)
 
     this.#upper.translate(-1, 0);
     this.#lower.translate(-1, 0);
@@ -39,14 +40,19 @@ class TObstacle {
     const hasCollided = 
     GameProps.hero.hasCollided(this.#upper) || 
     GameProps.hero.hasCollided(this.#lower);
-    console.log(hasCollided)
+   // console.log(hasCollided)
 
     if(hasCollided){
       GameProps.hero.flap();
       GameProps.hero.isDead = true;
     }
   }
-
+  get right(){
+    return this.#upper.right;
+}
+  get left(){
+    return this.#upper.left;
+}
   get posX(){
     return this.#upper.posX;
   }

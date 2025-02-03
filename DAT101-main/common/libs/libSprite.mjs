@@ -49,6 +49,13 @@ class TSpriteCanvas {
     }
   }
 
+  drawText(aText, aPos){
+    this.#ctx.font = "25px Arial";
+    this.#ctx.fillstyle = "#33333";
+    this.#ctx.textAlign = "right";
+    this.#ctx.fillText(aText, aPos.x, aPos.y);
+  }
+
   clearCanvas() {
     this.#ctx.clearRect(0, 0, this.#cvs.width, this.#cvs.height);
   }
@@ -126,6 +133,13 @@ class TSprite {
   set posY(aY) {
     this.#pos.y = aY;
     this.boundingBox.y = aY;
+  }
+
+  get left(){
+    return this.#pos.x;
+  }
+  get right(){
+    return this.#pos.x + this.#spi.width;
   }
 
   setPos(aX, aY) {
