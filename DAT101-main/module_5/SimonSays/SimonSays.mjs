@@ -19,6 +19,7 @@ export const SpriteInfoList = {
 const cvs = document.getElementById("cvs");
 const spcvs = new libSprite.TSpriteCanvas(cvs);
 
+
 export const EGameStatusType = {Idle: 0, Computer: 1, Player: 2, GameOver: 3};
 
 export const gameProps = {
@@ -71,6 +72,7 @@ function startGame(){
   gameProps.sequence = [];
   gameProps.GameSpeed = 800;
   gameProps.spnRound.value = 0; 
+  gameProps.countSpawn = 0;
   spawnSequence();
   
 }
@@ -100,7 +102,7 @@ function setDisabledButtons(aDisabled){
 
 function setMouseDown(){
   gameProps.activeButton.onMouseDown();
-  setTimeout(setMouseUp, gameProps,GameSpeed);
+  setTimeout(setMouseUp, gameProps.GameSpeed);
 }
 
 function setMouseUp(){
@@ -132,7 +134,7 @@ export function spawnSequence(){
  gameProps.activeButton = gameProps.sequence[0];
  gameProps.Status = EGameStatusType.Computer;
  setDisabledButtons(true);
- setTimeout(setMouseDown, gameProps,GameSpeed);
+ setTimeout(setMouseDown, gameProps.GameSpeed);
 
  if(gameProps.GameSpeed > 200){
   gameProps.GameSpeed -= 100;
@@ -140,7 +142,7 @@ export function spawnSequence(){
    gameProps.GameSpeed = 120;
 }
 
-console.log(countSpawn++, gameProps.GameSpeed);
+console.log(gameProps.countSpawn++, gameProps.GameSpeed);
 }
 //--------------- Event Handlers -----------------------------------------//
 

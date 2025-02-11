@@ -4,9 +4,11 @@ import libSprite from "../../common/libs/libSprite_v2.mjs";
 import { gameProps, EGameStatusType, spawnSequence } from "./SimonSays.mjs";
 
 export class TColorButton extends libSprite.TSpriteButton{
+  
   constructor(aSpriteCanvas, aSpriteInfo){
     super(aSpriteCanvas, aSpriteInfo, aSpriteInfo.dst);
     this.sound = null;
+    
   }
 
   //Vi har noe som heter A.P.I.E. (Abstract, Polymorphism, Inheritance, Encapsulation)
@@ -18,7 +20,7 @@ export class TColorButton extends libSprite.TSpriteButton{
     if(isInside){
       const dx = aPoint.x - gameProps.GameCenter.x;
       const dy = aPoint.y - gameProps.GameCenter.y;
-      const dist = Math.hypot(dx, dy);
+      const dist = Math.hypot(dx, dy); 
       isInside = (dist >= this.spi.dst.r1) && (dist <= this.spi.dst.r2);
     }
     return isInside;
@@ -30,12 +32,13 @@ export class TColorButton extends libSprite.TSpriteButton{
     this.sound.play();
   }
 
-  onLeave(aEvent){
-    if(aEvent.buttons !== 0){
-      this.index = 0;
-      this.sound.stop();
+  onLeave() {
+    if (!this.buttons) {
+       return;
     }
-  }
+    this.buttons.forEach(button => button.reset());
+ }
+ 
   //Vi må også løse dette med polymorphism, når musa slippes opp på smultringen
   onMouseUp(){
     if(this.index !== 1) return;
