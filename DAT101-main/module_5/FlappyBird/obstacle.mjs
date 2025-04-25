@@ -13,7 +13,7 @@ class TObstacle {
     let top = Math.floor(Math.random() * minTop);
     let pos = new lib2d.TPosition(650, top);
     this.#upper = new libSprite.TSprite(aSpriteCanvas, aSpriteInfo, pos);
-    this.#upper.index = 3; // her
+    this.#upper.index = GameProps.dayTime ? 3 : 1; // her
     const groundY = GameProps.ground.posY;
     top += this.#spi.height + 150;
     const gap = top - groundY - 25;
@@ -21,7 +21,7 @@ class TObstacle {
     top = Math.floor(Math.random() * gap) + groundY -25;
     pos.y = top;
     this.#lower = new libSprite.TSprite(aSpriteCanvas, aSpriteInfo, pos);
-    this.#lower.index = 2; 
+    this.#lower.index = GameProps.dayTime ? 2 : 0;
     this.hasPassed = false; //implisit vi vet ikke hva vi har gjort. javascript gjetter. ekslusivt gjør at vi setter noe til Eksamen!!
   }
 
@@ -31,8 +31,6 @@ class TObstacle {
   }
 
   update(){
-    //console.log(`Hero pos x: ${GameProps.hero.posX} + Obstacle pos x: ${this.#lower.posX} `)
-    //console.log(`Hero pos y: ${GameProps.hero.posY} + Obstacle pos x: ${this.#lower.posY} `)
 
     this.#upper.translate(-1, 0);
     this.#lower.translate(-1, 0);

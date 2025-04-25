@@ -47,11 +47,11 @@ class TSpriteCanvas {
     }else{
       this.#ctx.drawImage(this.#img, sx, sy, sw, sh, dx, dy, dw, dh);
     }
-  }
+  } // End of drawSprite
 
   drawText(aText, aPos){
     this.#ctx.font = "25px Arial";
-    this.#ctx.fillstyle = "#33333";
+    this.#ctx.fillStyle = "#333333";
     this.#ctx.textAlign = "right";
     this.#ctx.fillText(aText, aPos.x, aPos.y);
   }
@@ -69,6 +69,7 @@ class TSpriteCanvas {
     this.mousePos.y = aEvent.clientY - this.#boundingRect.top;
     return this.mousePos;
   }
+
   get style(){
     return this.#cvs.style;
   }
@@ -125,6 +126,14 @@ class TSprite {
     return this.#pos.y;
   }
 
+  get left(){
+    return this.#pos.x;
+  }
+
+  get right(){
+    return this.#pos.x + this.#spi.width;
+  }
+
   set posX(aX) {
     this.#pos.x = aX;
     this.boundingBox.x = aX;
@@ -133,13 +142,6 @@ class TSprite {
   set posY(aY) {
     this.#pos.y = aY;
     this.boundingBox.y = aY;
-  }
-
-  get left(){
-    return this.#pos.x;
-  }
-  get right(){
-    return this.#pos.x + this.#spi.width;
   }
 
   setPos(aX, aY) {

@@ -103,6 +103,7 @@ export class TMenu{
   reset(){
     GameProps.score = 0;
     this.#spNumber.index = 3;
+    this.#spInfoText.index = 0;
   }
 
   #onMouseMove = (aEvent) => {

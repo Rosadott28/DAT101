@@ -26,19 +26,6 @@ class THero extends libSprite.TSprite {
   }
 
   update() {
-    /* this.velocity += this.gravity;
-        this.posY += this.velocity;
-    
-        if (this.posY > this.groundY) {
-            this.posY = this.groundY;
-            this.velocity = 0;
-        } else {
-            this.posY = this.groundY - this.spi.height;
-            GameProps.status = EGameStatus.gameOver;
-            this.animateSpeed = 0;
-          }
-            */
-
     const groundY = GameProps.ground.posY;
     const bottomY = this.posY + this.#spi.height;
     if (bottomY < groundY) {
@@ -53,6 +40,7 @@ class THero extends libSprite.TSprite {
       this.posY = groundY - this.#spi.height;
       GameProps.status = EGameStatus.gameOver;
       this.animateSpeed = 0;
+      GameProps.sounds.running.stop();
     }
   }
 

@@ -136,14 +136,14 @@ function updateGame(){
       GameProps.hero.update();
       let delObstacleIndex = -1;
       
-
       for (let i = 0; i < GameProps.obstacles.length; i++) {
         const obstacle = GameProps.obstacles[i];
         obstacle.update();
 
         if(obstacle.right < GameProps.hero.left && !obstacle.hasPassed){
+
           GameProps.menu.incScore(20);
-          //hasPassedObstacle = true;
+          console.log("Score: " + GameProps.score);
           obstacle.hasPassed = true;
         }
 
@@ -173,7 +173,7 @@ function updateGame(){
 
         if (delBaitIndex >= 0) {
           GameProps.baits.splice(delBaitIndex, 1);
-          GameProps.menu.incScore(10); //her skal flyttes
+          GameProps.menu.incScore(10); 
 
         }
         break;
@@ -183,28 +183,6 @@ function updateGame(){
     }
   
 }
-//ebba og vegard kode:
-  /*GameProps.hero.update();
-  GameProps.ground.translate(-GameProps.speed, 0);
-  if(GameProps.ground.posX <= -SpriteInfoList.background.width){
-    GameProps.ground.posX = 0;
-  }
-
-  GameProps.hero.update();
-
-  let delObstacleIndex = -1;
-  
-  for(let i = 0; i < GameProps.obstacles.length; i++){
-    const obstacle = GameProps.obstacles[i];
-    obstacle.update();
-    if(obstacle.posX < -100){
-      delObstacleIndex = i;
-    }
-  }
-  if(delObstacleIndex >= 0){
-    GameProps.obstacles.splice(delObstacleIndex, 1);
-  }
-} */
 
 function spawnObstacle(){
   const obstacle = new TObstacle(spcvs, SpriteInfoList.obstacle);
@@ -239,6 +217,8 @@ export function StartGame() {
   GameProps.menu.reset();
   spawnObstacle();
   spawnBait();
+
+  GameProps.sounds.running.play();
 }
 
 
@@ -257,12 +237,21 @@ function setSoundOnOff() {
 function setDayNight() {
   if (rbDayNight[0].checked) {
     GameProps.dayTime = true;
+    GameProps.background.index = 0; // Sett bakgrunnen til dag
     console.log("Day time");
   } else {
     GameProps.dayTime = false;
+    GameProps.background.index = 1; // Sett bakgrunnen til natt
     console.log("Night time");
   }
-} // end of setDayNight
+  for (let obstacle of GameProps.obstacles) {
+    if (GameProps.dayTime) {
+     // obstacle.index = 0; // Lysere hindring for dag
+    } else {
+    //  obstacle.index = 1; // Mørkere hindring for natt
+    }
+  }
+}
 
 function onKeyPress(aEvent){
   if (aEvent.code === "Space") {
