@@ -60,16 +60,16 @@ export function newGame() {
   spcvs.clearButtons();
   gameProps.tiles = [];
   gameProps.gameBoard = new TGameBoard(spcvs, SpriteInfoList.Board, new lib2d.TPoint(0, 0));
-  //Lag ny forekomst av TTile
+  
   for (let row = 0; row < gameLevel.Tiles.Row; row++) {
-    const rows = []; //Dette er kolonner i raden av "row"
+    const rows = []; 
     for (let col = 0; col < gameLevel.Tiles.Col; col++) {
       rows.push(new TTile(spcvs, SpriteInfoList.ButtonTile, row, col));
     }
     gameProps.tiles.push(rows);
   }
-  //Lag alle minene i spillet basert på gameLevel.Mines
-  let mineCounter = 1; //Indikerer hvor mange miner som er lagt ut
+  
+  let mineCounter = 1;
   do {
     const row = Math.floor(Math.random() * gameLevel.Tiles.Row);
     const col = Math.floor(Math.random() * gameLevel.Tiles.Col);
@@ -87,7 +87,7 @@ export function newGame() {
 function drawGame() {
   spcvs.clearCanvas();
   gameProps.gameBoard.draw();
-  //Husk å tegne forekomsten av TTile
+ 
   forEachTile(drawTile);
   gameProps.ScoreBoard.draw();
   requestAnimationFrame(drawGame);
@@ -98,8 +98,7 @@ function drawTile(aTile) {
 }
 
 export function setGameOver() {
-  //Stoppe Tiden.
-  //Åpne alle miner.
+
   gameProps.ScoreBoard.stopTime();
   forEachTile(openMines);
 }

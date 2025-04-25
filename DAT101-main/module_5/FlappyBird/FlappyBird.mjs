@@ -258,20 +258,6 @@ function onKeyPress(aEvent){
     GameProps.hero.flap();
   }
 
-
-  /*
-  switch(aEvent.code){
-    case "Space":// case betyr if men lettere når mange
-      GameProps.hero.flap();
-      break;
-    case "H":
-      
-      break;
-    default:
-
-      break;
-  }
-      */
 }
 
 //--------------- Main Code ----------------------------------------------//
