@@ -28,7 +28,7 @@ export const SpriteInfoList = {
 const cvs = document.getElementById("cvs");
 const spcvs = new libSprite.TSpriteCanvas(cvs);
 
-//Add all you game objects here
+
 export const GameProps = {
   board: null,
   colorPickers:[],
@@ -61,7 +61,7 @@ export function newGame() {
   moveRoundIndicator();
 
   for(let i = 0; i < ColorKeys.length; i++){
-    const colorName = ColorKeys[i]; //Color name
+    const colorName = ColorKeys[i];
     const colorPicker = new TColorPicker(spcvs, SpriteInfoList.ColorPicker, colorName, i);
     GameProps.colorPickers.push(colorPicker);
   }
@@ -71,7 +71,7 @@ export function newGame() {
 
 function drawGame(){
   spcvs.clearCanvas();
-  //Draw all game objects here, remember to think about the draw order (layers in PhotoShop for example!)
+
   GameProps.board.draw();
 
   for(let i = 0; i < GameProps.computerAnswers.length; i++){
@@ -115,9 +115,9 @@ export function moveRoundIndicator(){
 //------ Event Handlers
 //--------------------------------------------------------------------------------------------------------------------
 
-//loadGame runs once when the sprite sheet is loaded
+
 function loadGame() {
-  //Set canvas with and height to match the sprite sheet
+ 
   cvs.width = SpriteInfoList.Board.width;
   cvs.height = SpriteInfoList.Board.height;
   spcvs.updateBoundsRect();
@@ -132,7 +132,7 @@ function loadGame() {
   GameProps.menu = new TMenu(spcvs);
 
   newGame();
-  requestAnimationFrame(drawGame); // Start the animation loop
+  requestAnimationFrame(drawGame); 
 }
 
 
