@@ -13,6 +13,7 @@ const chkMuteSound = document.getElementById("chkMuteSound");
 const rbDayNight = document.getElementsByName("rbDayNight");
 const cvs = document.getElementById("cvs");
 const spcvs = new libSprite.TSpriteCanvas(cvs);
+libSound.activateAudioContext();
 
 // prettier-ignore
 export const SpriteInfoList = {
@@ -81,14 +82,23 @@ function loadGame(){
   //  GameProps.hero = new THero(spcvs, SpriteInfoList.hero1, heroPos, groundPos.y);
   GameProps.hero.animateSpeed = 10;
 
+  GameProps.menu = new TMenu(spcvs);
+
+
   spawnObstacle();
   spawnBait();
+
+  
   
   requestAnimationFrame(drawGame);
   setInterval(updateGame, 10);
+  GameProps.sounds.running = new libSound.TSoundFile("./Media/running.mp3");
+  GameProps.sounds.countDown = new libSound.TSoundFile("./Media/countDown.mp3");
+  GameProps.sounds.flap = new libSound.TSoundFile("./Media/flap.mp3");
+  GameProps.sounds.food = new libSound.TSoundFile("./Media/food.mp3");
+  GameProps.sounds.dead = new libSound.TSoundFile("./Media/gameOver.mp3");
+  GameProps.sounds.gameOver = new libSound.TSoundFile("./Media/heroIsDead.mp3");
 
-  GameProps.menu = new TMenu(spcvs);
-  GameProps.sounds.running = new libSound.TSoundFile(".Media/running.mp3"); //yp check i t out
 }
 
 function drawGame(){
@@ -124,6 +134,8 @@ function updateGame(){
     case EGameStatus.playing:
       if (GameProps.hero.isDead) {
         GameProps.hero.animateSpeed = 0;
+        GameProps.soundMuted === GameProps.soundMuted;
+        playSound(GameProps.sounds.dead);
         GameProps.hero.update();
         return;
       }
@@ -173,6 +185,9 @@ function updateGame(){
 
         if (delBaitIndex >= 0) {
           GameProps.baits.splice(delBaitIndex, 1);
+          GameProps.soundMuted === GameProps.soundMuted;
+          GameProps.sounds.food.stop();
+          playSound(GameProps.sounds.food);
           GameProps.menu.incScore(10); 
 
         }
@@ -188,10 +203,15 @@ function spawnObstacle(){
   const obstacle = new TObstacle(spcvs, SpriteInfoList.obstacle);
   GameProps.obstacles.push(obstacle);
   //Spawn a new obstacle in 2-7 seconds
-  //const seconds = Math.ceil(Math.random() * 5) + 2;
-  const seconds = 3;
-  setTimeout(spawnObstacle, seconds * 1000);
-  console.log("Obstacle spawned in " + seconds + " seconds");
+
+ // const seconds = 3;
+  //setTimeout(spawnObstacle, seconds * 1000);
+  //console.log("Obstacle spawned in " + seconds + " seconds");
+
+  if (GameProps.status === EGameStatus.playing) {
+    const seconds = Math.ceil(Math.random() * 5) + 2;
+    setTimeout(spawnObstacle, seconds * 1000);
+}
 }
 
 function spawnBait() {
@@ -218,7 +238,16 @@ export function StartGame() {
   spawnObstacle();
   spawnBait();
 
-  GameProps.sounds.running.play();
+  GameProps.sounds.countDown.stop();
+  GameProps.sounds.gameOver.stop();
+  GameProps.sounds.dead.stop();
+  GameProps.soundMuted === GameProps.soundMuted;
+  playSound(GameProps.sounds.running);
+
+//if (!GameProps.sounds.running.audioState === 1) {
+ //   GameProps.sounds.running.stop();
+ // }
+//  GameProps.sounds.running.play();
 }
 
 
@@ -256,6 +285,9 @@ function setDayNight() {
 function onKeyPress(aEvent){
   if (aEvent.code === "Space") {
     GameProps.hero.flap();
+    GameProps.soundMuted === GameProps.soundMuted;
+    GameProps.sounds.flap.stop();
+    playSound(GameProps.sounds.flap);
   }
 
 }
@@ -268,4 +300,6 @@ rbDayNight[1].addEventListener("change", setDayNight);
 document.addEventListener("keydown", onKeyPress);
 
 // Load the sprite sheet
-spcvs.loadSpriteSheet("Media/FlappyBirdSprites.png", loadGame)
+spcvs.loadSpriteSheet("./Media/FlappyBirdSprites.png", loadGame)
+
+
